@@ -1,7 +1,4 @@
 from pico2d import *
-
-from boy import Boy
-from grass import Grass
 from bird import Bird
 import game_world
 import random

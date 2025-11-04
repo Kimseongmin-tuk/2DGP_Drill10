@@ -49,7 +49,7 @@ def run(start_mode):
 
     # 여기를 채우시오.
     global frame_time
-    fame_time = 0.0
+    frame_time = 0.0
     current_time = time.time()
     while running:
         stack[-1].handle_events()

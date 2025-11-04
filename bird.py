@@ -26,7 +26,7 @@ class Bird:
         self.frame_per_row = 5
 
         self.frame_time = 0
-        self.frame_interval = 0.05
+        self.frame_interval = 0.05 # 초당 날갯짓 20회
 
         self.screen_width = get_canvas_width()
         self.screen_height = get_canvas_height()

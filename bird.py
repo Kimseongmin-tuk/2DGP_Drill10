@@ -22,7 +22,7 @@ class Bird:
 
         self.frame_width = 183
         self.frame_height = 168
-        self.total_frames = 13
+        self.total_frames = 14
         self.frame_per_row = 5
 
         self.frame_time = 0

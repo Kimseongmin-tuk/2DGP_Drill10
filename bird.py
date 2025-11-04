@@ -19,11 +19,15 @@ class Bird:
         self.frame_per_row = 5
 
     def draw(self):
-        col = self.frame % self.frame_per_row
-        row = self.frame // self.frame_per_row
+        col = self.frame % self.frame_per_row # 최대 5프레임
+        row = self.frame // self.frame_per_row # 최대 3행
 
-        self.image.clip_draw(col * self.frame_width, row * self.frame_height, self.frame_width, self.frame_height, self.x, self.y, 100, 100)
-
+        if row == 0:
+            col = self.frame % 4
+            self.image.clip_draw(col * self.frame_width, row * self.frame_height, self.frame_width, self.frame_height, self.x, self.y, 100, 100)
+        else:
+            self.image.clip_draw(col * self.frame_width, row * self.frame_height, self.frame_width, self.frame_height, self.x, self.y, 100, 100)
+   
     def update(self):
         self.frame = (self.frame + 1) % self.total_frames
         delay(0.1)

@@ -26,6 +26,7 @@ def init():
 
     for i in range(10):
         bird = Bird()
+        bird.x = random.randint(50, 1550)
         bird.y = random.randint(100, 500)
         bird.direction = random.choice([-1, 1])
         birds.append(bird)

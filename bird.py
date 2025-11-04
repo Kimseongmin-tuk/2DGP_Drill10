@@ -1,0 +1,25 @@
+from pico2d import *
+import game_framework
+
+class Ball:
+    image = None
+
+    def __init__(self, x = 400, y = 300, velocity = 25, throwin_angle = 45):
+        if Ball.image == None:
+            Ball.image = load_image('ball21x21.png')
+        self.x, self.y = x, y
+        self.xv = velocity * math.cos(math.radians(throwin_angle))
+        self.yv = abs(velocity * math.sin(math.radians(throwin_angle)))
+
+    def draw(self):
+        self.image.draw(self.x, self.y)
+
+    def update(self):
+        self.yv -= GRAVITY * game_framework.frame_time
+        self.x += self.xv * game_framework.frame_time * PIXEL_PER_METER
+        self.y += self.yv * game_framework.frame_time * PIXEL_PER_METER
+
+        if self.x < 25 or self.x > 1600 - 25:
+            game_world.remove_object(self)
+        if self.y < 60:
+            game_world.remove_object(self)

@@ -15,11 +15,15 @@ class Bird:
 
         self.frame_width = 183
         self.frame_height = 168
-
-
+        self.total_frames = 13
+        self.frame_per_row = 5
 
     def draw(self):
-        self.image.clip_draw()
+        col = self.frame % self.frame_per_row
+        row = self.frame // self.frame_per_row
+
+        self.image.clip_draw(col * self.frame_width, row * self.frame_height, self.frame_width, self.frame_height, self.x, self.y, 100, 100)
 
     def update(self):
-        pass
+        self.frame = (self.frame + 1) % self.total_frames
+        delay(0.1)

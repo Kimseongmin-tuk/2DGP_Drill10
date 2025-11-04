@@ -13,8 +13,13 @@ class Bird:
         self.direction = direction
         self.frame = frame
 
+        self.frame_width = 183
+        self.frame_height = 168
+
+
+
     def draw(self):
-        self.image.draw(self.x, self.y)
+        self.image.clip_draw()
 
     def update(self):
         pass

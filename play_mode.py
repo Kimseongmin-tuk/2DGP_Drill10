@@ -4,11 +4,12 @@ from boy import Boy
 from grass import Grass
 from bird import Bird
 import game_world
+import random
 
 import game_framework
 
 
-boy = None
+birds = []
 
 def handle_events():
     global running
@@ -22,10 +23,17 @@ def handle_events():
 
 def init():
     global running
+    global birds
 
     running = True
-    bird = Bird()
-    game_world.add_object(bird, 0)
+
+    for i in range(10):
+        bird = Bird()
+        bird.y = random.randint(100, 500)
+        bird.direction = random.choice([-1, 1])
+        birds.append(bird)
+
+        game_world.add_object(bird, 0)
 
 def update():
     game_world.update()

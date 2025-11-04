@@ -28,16 +28,28 @@ class Bird:
         col = self.frame % self.frame_per_row # 최대 5프레임
         row = self.frame // self.frame_per_row # 최대 3행
 
-        if row == 0:
-            col = self.frame % 4
-            self.image.clip_draw(col * self.frame_width, row * self.frame_height, self.frame_width, self.frame_height, self.x, self.y, 100, 100)
+        if self.direction == 1:
+            if row == 0:
+                col = self.frame % 4
+                self.image.clip_draw(col * self.frame_width, row * self.frame_height, self.frame_width, self.frame_height, self.x, self.y, 100, 100)
+            else:
+                self.image.clip_draw(col * self.frame_width, row * self.frame_height, self.frame_width, self.frame_height, self.x, self.y, 100, 100)
         else:
-            self.image.clip_draw(col * self.frame_width, row * self.frame_height, self.frame_width, self.frame_height, self.x, self.y, 100, 100)
+            if row == 0:
+                col = self.frame % 4
+                self.image.clip_composite_draw(col * self.frame_width, row * self.frame_height, self.frame_width, self.frame_height, 0, 'h', self.x, self.y, 100, 100)
+            else:
+                self.image.clip_composite_draw(col * self.frame_width, row * self.frame_height, self.frame_width, self.frame_height, 0, 'h', self.x, self.y, 100, 100)
 
     def update(self):
         self.x += self.speed * self.direction * game_framework.frame_time
-        self.frame_time += game_framework.frame_time
 
+        if self.x >= self.screen_width - 50:
+            self.direction = -self.direction
+        elif self.x <= 50:
+            self.direction = -self.direction
+
+        self.frame_time += game_framework.frame_time
         if self.frame_time >= self.frame_interval:
           self.frame = (self.frame + 1) % self.total_frames
           self.frame_time = 0
